@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <title>Kontaktformular</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles_projekt.css">
+  <!-- Icon Stylesheet für formularbilchen -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+</head>
+<nav class="navbar navbar-expand-lg fixed-top bg-primary ms-1 me-1 d-print-none">
+  <div class="container-fluid">
+  <a class="navbar-brand" href="index.html"><img src="pics/logozweckverband.bmp" alt="Logo Zweckverband" width="90" height="72"></a>
+  <div>
+    <a class="nav-link text-white mx-3"><small>Zweckverband Sozial-<br/>Diakoniestation Oberes Gäu</small></a>
+  </div>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+  </button>
+<!-- navbar links -->
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link text-white mx-3" href="index.html">Home</a>
+        <a class="nav-link text-white mx-3" href="seite1_unsere_angebote.html">Unsere Angebote</a>
+        <a class="nav-link text-white mx-3" href="seite2_chancen_und-karriere.html">Chancen und Karriere</a>
+        <a class="nav-link text-white mx-3" href="seite3_ueber_uns.html">Über uns</a>
+        <a class="nav-link text-white mx-3" href="seite4_foerderverein.html">Förderverein</a>
+        <a class="nav-link text-white mx-3" href="seite6_bildergalerie.html">Bildergalerie</a>
+        <!-- <a class="btn btn-secondary" href="seite5_kontaktformular.html">Kontaktieren Sie uns</a> -->
+      </div>
+</nav>
+
+<body>
+<div class="container-lg ds2 border-start border-end border-primary">
+  <div class="text-center">
+    <h2>Kontaktieren Sie uns!</h2>
+    <p class="lead">Sie haben Fragen, Anregungen oder möchten sich bewerben? Schreiben Sie uns...</p>
+  </div>
+  <div class="row justify-content-center my-5">
+    <div class="col-lg-6 text-primary">
+    <!-- Formular -->
+    <!-- id=loginForm for js -->
+      <form id="loginForm" onsubmit="sendEmail(); reset(); return false;">
+        <label for="email" class="form-label">Email Adresse:</label>
+          <div class="input-group mb-4">
+            <span class="input-group-text">
+              <i class="bi bi-envelope-fill text-secondary"></i>
+            </span>
+            <input required type="text" id="email" class="form-control" placeholder="z.B. frida.mueller@beispiel.com" />
+          </div>
+          <label for="name" class="form-label">Name:</label>
+          <div class="mb-4 input-group">
+            <span class="input-group-text">
+              <i class="bi bi-file-person-fill text-secondary"></i>
+            </span>
+            <input required type="text" id="name" class="form-control" placeholder="z.B. Frida Müller" />
+          </div>
+          <label for="subject" class="form-label">Worum geht es Ihnen?</label>
+            <div class="mb-4 input-group">
+              <span class="input-group-text">
+                <i class="bi bi-chat-left-text"></i>
+              </span>
+              <select class="form-select" id="subject">
+                <option value="Erstkontakt" selected>Erstkontakt</option>
+                <option value="Vertragliches">Vertragliches</option>
+                <option value="Bewerbung">Bewerbung</option>
+                <option value="Anderes">Anderes</option>
+              </select>
+            </div>
+            <div class="mb-4 mt-5 form-floating">
+              <textarea required class="form-control" id="query" style="height: 140px" placeholder="Anliegen"></textarea>
+              <label for="query">Ihr Anliegen...</label>
+            </div>
+            <div class="mb-4 text-center">
+              <!-- type for js -->
+              <button type="submit" class="btn btn-primary">Senden</button>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
+<!-- SMTPJS to send email from java script -->
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+  function sendEmail() {
+    // DIESE 3 variablen habe ich oben vergeben
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var query = document.getElementById("query").value;
+
+    Email.send({
+      Host: "smtp.gmail.com",
+      Username: "davidmarrakech@gmail.com",
+      Password: "####",
+      To: 'daniel.schanz@gmail.com',
+      From: email,
+      Subject: "Neue Kontaktanfrage",
+      Body: "Name: " + name + "<br> Email: " + email + "<br> Message: " + query
+    }).then(
+      message => {
+        alert("Wir haben ihre Nachricht erhalten. Vielen Dank!\nName: " + name + "\nE-Mail: " + email + "\nNachricht: " + query);
+      }
+    );
+  }
+</script>
+
+
+       
+</body>
+<footer class="d-print-none">
+  <div class="container-fluid ms-1 me-1 bg-primary text-white">
+    <div class="row">  
+      <div class="col-6 col-lg-4 mb-3 text-center text-lg-start"> 
+        <p class="fw-bold">Links</p>
+        <ul class="list-unstyled">
+          <small>
+            <li class="mb-2"><a href="/" class="link-light">Home</a></li>
+          </small>
+          <small>
+            <li class="mb-2"><a href="#" class="link-light">Nützliches</a></li>
+          </small>
+          <small>
+            <li class="mb-2"><a href="#" class="link-light">Lustiges</a></li>
+          </small>
+          <small>
+            <li class="mb-2"><a href="#" class="link-light">Kommendes</a></li>
+          </small>
+        </ul>
+      </div>
+  
+      <div class="col-6 col-lg-4 mb-3 text-center text-lg-end">
+        <small>
+          <p class="fw-bold">Rights</p>
+        </small>
+          <ul class="list-unstyled">
+          <small>
+            <li class="mb-2"><a href="#" class="link-light">Datenschutzerklärung</a></li>
+          </small>
+          <small>
+            <li class="mb-2"><a href="#" class="link-light">Informationspflicht nach § 36 VSGB</a></li>
+          </small>
+          <small>
+           <li class="mb-2"><a href="#" class="link-light">Impressum</a></li> 
+          </small>
+        </ul>
+      </div>    
+      <div class="col-lg-4 mb-3 text-center text-lg-end ">
+        <ul class="list-unstyled small">
+          <small>
+            <li class="mb-2">Designed and built by me with the help of bootstrap and <a href="https://www.youtube.com/@NetNinja" class="link-light">The Net Ninja</a>.</li>
+          </small>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </footer>
+
+</html>
